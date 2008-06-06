@@ -10,7 +10,7 @@
 package Controlador;
 
  
-import Interfaz.VentanaPrincipal;
+import Vista.VentanaPrincipal;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Insets;

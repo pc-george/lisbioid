@@ -24,27 +24,70 @@ import java.sql.*;
 public class ControladorBaseDeDatos
 {
     private Connection con;
+
+    public Connection getCon() {
+        return con;
+    }
     private Statement  st;
     private ResultSet  res;
+    private PreparedStatement ps ;
 
-     
-    public ControladorBaseDeDatos(String baseDato)
+    public PreparedStatement getPs() {
+        return ps;
+    }
+    //laptop begin
+//    private final String url = "jdbc:sqlserver://";
+//    private final String serverName= "localhost";
+//    private final String portNumber = "2461";
+//    private final String databaseName= "lisbioid";
+//    private final String instance = "MARTIN\\tuza";
+//    private final String userName = "sa";
+//    private final String password = "eltuza";
+//    private final String selectMethod = "cursor";
+    //laptop end
+    
+    //mslabs begin
+    private final String url = "jdbc:sqlserver://";
+    private final String serverName= "MSLABS\\PRODUCCION";
+    private final String portNumber = "3341";
+    private final String databaseName= "lisbioid";
+    private final String instance = "MSLABS\\PRODUCCION";
+    private final String userName = "lisbioid";
+    private final String password = "energianuclear";
+    private final String selectMethod = "cursor";
+    //mslabs end
+    
+    public ControladorBaseDeDatos()//String baseDato) la base ahora se configura en odbc
     {
+   
          try
          {
-               String base = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=" + baseDato;
-               Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-               con = DriverManager.getConnection(base);
-               st = con.createStatement();
+               Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+               //setear ususario, password y base por defecto en la conexion obds de windows
+               con = DriverManager.getConnection(getConnectionUrl(), userName, password);
+//               con = DriverManager.getConnection(getConnectionUrl());
+               //System.out.println(con.getCatalog());
+               //st = con.createStatement();
+               //ps = null;
+//               if(con.isValid(1000))
+//                   throw new SQLException();
+//               
          }
     
          catch(Exception e)
          {
                System.out.println("Error general: " + e.getMessage());
+               e.printStackTrace();
          }
     }
+    public Connection getC(){
+        return this.con;
+    }
     
-    
+    private String getConnectionUrl(){
+         return url+serverName+":" + portNumber + ";"+"databaseName="+databaseName +";" + "selectMethod="+selectMethod+";"+"instance="+instance+";";
+                  
+     }
     public ResultSet consulta( String query )
     {
         try
