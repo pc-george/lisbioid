@@ -104,7 +104,7 @@ public class Investigador {
         ControladorBaseDeDatos conLIS = ControladorBaseDeDatosFactory.instance();
         PreparedStatement ps = null;
         
-        ps = conLIS.getCon().prepareStatement("SELECT id, nombre, apellido, telefono, telefono2, email, observaciones, es_encargado  FROM Investigador WHERE numero_documento = ? ;");
+        ps = conLIS.getCon().prepareStatement("SELECT id, nombre, apellido, telefono, telefono2, desactivado, email, observaciones, es_encargado  FROM Investigador WHERE numero_documento = ? ;");
         ps.setString(1, dni);
         
         rs = ps.executeQuery();
@@ -120,6 +120,9 @@ public class Investigador {
             this.email = rs.getString("email");
             this.observacion = rs.getString("observaciones");
             this.esEncargado = rs.getBoolean("es_encargado");
+            
+            if(rs.getBoolean("desactivado"))
+                throw new NullPointerException(); //encontro uno pero esta desactivado, se puede pisar
         }
         else{
            

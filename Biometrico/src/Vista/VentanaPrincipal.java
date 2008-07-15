@@ -335,7 +335,6 @@ public class VentanaPrincipal extends javax.swing.JFrame implements IStatusEvent
         this.procesarHuella(); 
         
         if(principal.identify()){
-
             //si identifica registra la accion
             try{
                 principal.doAccion();

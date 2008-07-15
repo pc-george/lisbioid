@@ -193,11 +193,10 @@ public class AltaUsuario extends JFrame {
                 Investigador test = new Investigador(fDni.getText());
                 JOptionPane.showMessageDialog(this, "El DNI ya esta registrado en la BD.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
-                
             }catch(Exception e){
-                //si dio Nullpointer es porque no existe con ese documento y puede seguir....do nothing
+                //si dio NullPointer es porque no existe con ese documento y puede seguir....do nothing
             }
-            Investigador inv = new Investigador(0, fNombre.getText(), fApellido.getText(), fDni.getText(), fTelefono.getText(), fTelefono2.getText(), fEmail.getText() , fObservacion.getText(), esStaff.isSelected() );
+            Investigador inv = new Investigador(0, fNombre.getText(), fApellido.getText(), fDni.getText().trim(), fTelefono.getText(), fTelefono2.getText(), fEmail.getText() , fObservacion.getText(), esStaff.isSelected() );
             try{
                 inv.hacerAlta();
             }catch(SQLException e){

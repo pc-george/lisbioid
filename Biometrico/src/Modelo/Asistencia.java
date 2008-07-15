@@ -136,8 +136,17 @@ public class Asistencia {
         ControladorBaseDeDatos conLIS = ControladorBaseDeDatosFactory.instance();
         //solo devuelve una asistencia en la que el investigador no esta deslogueado...es decir..entro, pero no salio
         PreparedStatement ps = null;
-        ps = conLIS.getCon().prepareStatement("SELECT h_entrada, id FROM Asistencia WHERE id_investigador = ? AND h_salida IS NULL ; ");
+        
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 1);
+        //se setea a today como la fecha con hora 0 minuto 1
+        Timestamp todayTS= new Timestamp(today.getTime().getTime());
+        
+        
+        ps = conLIS.getCon().prepareStatement("SELECT h_entrada, id FROM Asistencia WHERE id_investigador = ? AND h_entrada > ? AND h_salida IS NULL ; ");
         ps.setInt(1, inv.getId());
+        ps.setTimestamp(2, todayTS);
         ResultSet rs = ps.executeQuery();
         
         

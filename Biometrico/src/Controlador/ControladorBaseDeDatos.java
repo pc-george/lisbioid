@@ -35,26 +35,26 @@ public class ControladorBaseDeDatos
     public PreparedStatement getPs() {
         return ps;
     }
-    //laptop begin
-//    private final String url = "jdbc:sqlserver://";
-//    private final String serverName= "localhost";
-//    private final String portNumber = "2461";
-//    private final String databaseName= "lisbioid";
-//    private final String instance = "MARTIN\\tuza";
-//    private final String userName = "sa";
-//    private final String password = "eltuza";
-//    private final String selectMethod = "cursor";
-    //laptop end
+    //mylaptop server begin
+    private final String url = "jdbc:sqlserver://";
+    private final String serverName= "localhost";
+    private final String portNumber = "2461";
+    private final String databaseName= "lisbioid";
+    private final String instance = "MARTIN\\tuza";
+    private final String userName = "sa";
+    private final String password = "eltuza";
+    private final String selectMethod = "cursor";
+    //mylaptop server end
     
     //mslabs begin
-    private final String url = "jdbc:sqlserver://";
-    private final String serverName= "MSLABS\\PRODUCCION";
-    private final String portNumber = "3341";
-    private final String databaseName= "lisbioid";
-    private final String instance = "MSLABS\\PRODUCCION";
-    private final String userName = "lisbioid";
-    private final String password = "energianuclear";
-    private final String selectMethod = "cursor";
+//    private final String url = "jdbc:sqlserver://";
+//    private final String serverName= "MSLABS\\PRODUCCION";
+//    private final String portNumber = "3341";
+//    private final String databaseName= "lisbioid";
+//    private final String instance = "MSLABS\\PRODUCCION";
+//    private final String userName = "lisbioid";
+//    private final String password = "energianuclear";
+//    private final String selectMethod = "cursor";
     //mslabs end
     
     public ControladorBaseDeDatos()//String baseDato) la base ahora se configura en odbc
@@ -65,13 +65,6 @@ public class ControladorBaseDeDatos
                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                //setear ususario, password y base por defecto en la conexion obds de windows
                con = DriverManager.getConnection(getConnectionUrl(), userName, password);
-//               con = DriverManager.getConnection(getConnectionUrl());
-               //System.out.println(con.getCatalog());
-               //st = con.createStatement();
-               //ps = null;
-//               if(con.isValid(1000))
-//                   throw new SQLException();
-//               
          }
     
          catch(Exception e)
